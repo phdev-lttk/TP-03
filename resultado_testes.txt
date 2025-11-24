@@ -1,0 +1,647 @@
+========================================
+AVALIADOR DE EXPRESSOES NUMERICAS
+BATERIA DE TESTES COMPLETA
+========================================
+
+
+============ TESTES OBRIGATORIOS DA TABELA ============
+
+========== TESTE 1 ==========
+Descricao: (3+4)*5
+Expressao pos-fixa: 3 4 + 5 *
+Valor calculado: 35.000000
+Valor esperado: 35.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 2 ==========
+Descricao: 7*2+4
+Expressao pos-fixa: 7 2 * 4 +
+Valor calculado: 18.000000
+Valor esperado: 18.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 3 ==========
+Descricao: 8+(5*(2+4))
+Expressao pos-fixa: 8 5 2 4 + * +
+Valor calculado: 38.000000
+Valor esperado: 38.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 4 ==========
+Descricao: (6/2+3)*4
+Expressao pos-fixa: 6 2 / 3 + 4 *
+Valor calculado: 24.000000
+Valor esperado: 24.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 5 ==========
+Descricao: 9+(5*(4+8*2))
+Expressao pos-fixa: 9 5 2 8 * 4 + * +
+Valor calculado: 109.000000
+Valor esperado: 109.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 6 ==========
+Descricao: log(2+3)/5
+Expressao pos-fixa: 2 3 + log 5 /
+Valor calculado: 0.139794
+Valor esperado: 0.140000
+Diferenca: 0.000206
+RESULTADO: OK - PASSOU
+
+========== TESTE 7 ==========
+Descricao: (log(10))^3+2
+Expressao pos-fixa: 10 log 3 ^ 2 +
+Valor calculado: 3.000000
+Valor esperado: 3.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 8 ==========
+Descricao: (45+60)*cos(30)
+Expressao pos-fixa: 45 60 + 30 cos *
+Valor calculado: 90.932663
+Valor esperado: 90.930000
+Diferenca: 0.002663
+RESULTADO: OK - PASSOU
+
+========== TESTE 9 ==========
+Descricao: sen(45)^2+0.5
+Expressao pos-fixa: 0.5 45 sen 2 ^ +
+Valor calculado: 1.000000
+Valor esperado: 1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - BASICOS ============
+
+========== TESTE 10 ==========
+Descricao: 5+3
+Expressao pos-fixa: 5 3 +
+Valor calculado: 8.000000
+Valor esperado: 8.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 11 ==========
+Descricao: 1+1
+Expressao pos-fixa: 1 1 +
+Valor calculado: 2.000000
+Valor esperado: 2.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 12 ==========
+Descricao: 10+20
+Expressao pos-fixa: 10 20 +
+Valor calculado: 30.000000
+Valor esperado: 30.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 13 ==========
+Descricao: 10-2
+Expressao pos-fixa: 10 2 -
+Valor calculado: 8.000000
+Valor esperado: 8.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 14 ==========
+Descricao: 50-30
+Expressao pos-fixa: 50 30 -
+Valor calculado: 20.000000
+Valor esperado: 20.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 15 ==========
+Descricao: 100-1
+Expressao pos-fixa: 100 1 -
+Valor calculado: 99.000000
+Valor esperado: 99.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 16 ==========
+Descricao: 4*5
+Expressao pos-fixa: 4 5 *
+Valor calculado: 20.000000
+Valor esperado: 20.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 17 ==========
+Descricao: 3*7
+Expressao pos-fixa: 3 7 *
+Valor calculado: 21.000000
+Valor esperado: 21.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 18 ==========
+Descricao: 6*6
+Expressao pos-fixa: 6 6 *
+Valor calculado: 36.000000
+Valor esperado: 36.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 19 ==========
+Descricao: 20/4
+Expressao pos-fixa: 20 4 /
+Valor calculado: 5.000000
+Valor esperado: 5.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 20 ==========
+Descricao: 100/10
+Expressao pos-fixa: 100 10 /
+Valor calculado: 10.000000
+Valor esperado: 10.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 21 ==========
+Descricao: 50/5
+Expressao pos-fixa: 50 5 /
+Valor calculado: 10.000000
+Valor esperado: 10.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - POTENCIA E MODULO ============
+
+========== TESTE 22 ==========
+Descricao: 2^3
+Expressao pos-fixa: 2 3 ^
+Valor calculado: 8.000000
+Valor esperado: 8.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 23 ==========
+Descricao: 3^2
+Expressao pos-fixa: 3 2 ^
+Valor calculado: 9.000000
+Valor esperado: 9.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 24 ==========
+Descricao: 5^2
+Expressao pos-fixa: 5 2 ^
+Valor calculado: 25.000000
+Valor esperado: 25.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 25 ==========
+Descricao: 2^10
+Expressao pos-fixa: 2 10 ^
+Valor calculado: 1024.000000
+Valor esperado: 1024.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 26 ==========
+Descricao: 10^2
+Expressao pos-fixa: 10 2 ^
+Valor calculado: 100.000000
+Valor esperado: 100.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 27 ==========
+Descricao: 7 mod 3
+Expressao pos-fixa: 7 3 %
+Valor calculado: 1.000000
+Valor esperado: 1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 28 ==========
+Descricao: 10 mod 3
+Expressao pos-fixa: 10 3 %
+Valor calculado: 1.000000
+Valor esperado: 1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 29 ==========
+Descricao: 15 mod 4
+Expressao pos-fixa: 15 4 %
+Valor calculado: 3.000000
+Valor esperado: 3.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 30 ==========
+Descricao: 20 mod 6
+Expressao pos-fixa: 20 6 %
+Valor calculado: 2.000000
+Valor esperado: 2.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - FUNCOES RAIZ ============
+
+========== TESTE 31 ==========
+Descricao: sqrt(4)
+Expressao pos-fixa: 4 raiz
+Valor calculado: 2.000000
+Valor esperado: 2.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 32 ==========
+Descricao: sqrt(9)
+Expressao pos-fixa: 9 raiz
+Valor calculado: 3.000000
+Valor esperado: 3.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 33 ==========
+Descricao: sqrt(16)
+Expressao pos-fixa: 16 raiz
+Valor calculado: 4.000000
+Valor esperado: 4.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 34 ==========
+Descricao: sqrt(25)
+Expressao pos-fixa: 25 raiz
+Valor calculado: 5.000000
+Valor esperado: 5.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 35 ==========
+Descricao: sqrt(100)
+Expressao pos-fixa: 100 raiz
+Valor calculado: 10.000000
+Valor esperado: 10.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - FUNCOES TRIGONOMETRICAS ============
+
+========== TESTE 36 ==========
+Descricao: sen(0)
+Expressao pos-fixa: 0 sen
+Valor calculado: 0.000000
+Valor esperado: 0.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 37 ==========
+Descricao: sen(90)
+Expressao pos-fixa: 90 sen
+Valor calculado: 1.000000
+Valor esperado: 1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 38 ==========
+Descricao: sen(30)
+Expressao pos-fixa: 30 sen
+Valor calculado: 0.500000
+Valor esperado: 0.500000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 39 ==========
+Descricao: sen(180)
+Expressao pos-fixa: 180 sen
+Valor calculado: 0.000000
+Valor esperado: 0.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 40 ==========
+Descricao: cos(0)
+Expressao pos-fixa: 0 cos
+Valor calculado: 1.000000
+Valor esperado: 1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 41 ==========
+Descricao: cos(90)
+Expressao pos-fixa: 90 cos
+Valor calculado: 0.000000
+Valor esperado: 0.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 42 ==========
+Descricao: cos(60)
+Expressao pos-fixa: 60 cos
+Valor calculado: 0.500000
+Valor esperado: 0.500000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 43 ==========
+Descricao: cos(180)
+Expressao pos-fixa: 180 cos
+Valor calculado: -1.000000
+Valor esperado: -1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 44 ==========
+Descricao: tg(0)
+Expressao pos-fixa: 0 tg
+Valor calculado: 0.000000
+Valor esperado: 0.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 45 ==========
+Descricao: tg(45)
+Expressao pos-fixa: 45 tg
+Valor calculado: 1.000000
+Valor esperado: 1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - FUNCOES LOGARITMO ============
+
+========== TESTE 46 ==========
+Descricao: log(1)
+Expressao pos-fixa: 1 log
+Valor calculado: 0.000000
+Valor esperado: 0.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 47 ==========
+Descricao: log(10)
+Expressao pos-fixa: 10 log
+Valor calculado: 1.000000
+Valor esperado: 1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 48 ==========
+Descricao: log(100)
+Expressao pos-fixa: 100 log
+Valor calculado: 2.000000
+Valor esperado: 2.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 49 ==========
+Descricao: log(1000)
+Expressao pos-fixa: 1000 log
+Valor calculado: 3.000000
+Valor esperado: 3.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - EXPRESSOES COM 2 OPERADORES ============
+
+========== TESTE 50 ==========
+Descricao: (1+2)+3
+Expressao pos-fixa: 1 2 + 3 +
+Valor calculado: 6.000000
+Valor esperado: 6.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 51 ==========
+Descricao: (5+5)+10
+Expressao pos-fixa: 5 5 + 10 +
+Valor calculado: 20.000000
+Valor esperado: 20.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 52 ==========
+Descricao: (2+3)*4
+Expressao pos-fixa: 2 3 + 4 *
+Valor calculado: 20.000000
+Valor esperado: 20.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 53 ==========
+Descricao: (3*4)+2
+Expressao pos-fixa: 3 4 * 2 +
+Valor calculado: 14.000000
+Valor esperado: 14.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 54 ==========
+Descricao: (10/2)-3
+Expressao pos-fixa: 10 2 / 3 -
+Valor calculado: 2.000000
+Valor esperado: 2.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 55 ==========
+Descricao: (20/2)+5
+Expressao pos-fixa: 20 2 / 5 +
+Valor calculado: 15.000000
+Valor esperado: 15.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 56 ==========
+Descricao: (2^3)+5
+Expressao pos-fixa: 2 3 ^ 5 +
+Valor calculado: 13.000000
+Valor esperado: 13.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 57 ==========
+Descricao: (3^2)+1
+Expressao pos-fixa: 3 2 ^ 1 +
+Valor calculado: 10.000000
+Valor esperado: 10.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - EXPRESSOES COM 3+ OPERADORES ============
+
+========== TESTE 58 ==========
+Descricao: ((2+3)*4)-5
+Expressao pos-fixa: 2 3 + 4 * 5 -
+Valor calculado: 15.000000
+Valor esperado: 15.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 59 ==========
+Descricao: ((10/2)+3)*4
+Expressao pos-fixa: 10 2 / 3 + 4 *
+Valor calculado: 32.000000
+Valor esperado: 32.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 60 ==========
+Descricao: ((5^2)*3)+10
+Expressao pos-fixa: 5 2 ^ 3 * 10 +
+Valor calculado: 85.000000
+Valor esperado: 85.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 61 ==========
+Descricao: (sqrt(4)+2)*3
+Expressao pos-fixa: 4 raiz 2 + 3 *
+Valor calculado: 12.000000
+Valor esperado: 12.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 62 ==========
+Descricao: (sqrt(9)+1)^2
+Expressao pos-fixa: 9 raiz 1 + 2 ^
+Valor calculado: 16.000000
+Valor esperado: 16.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - NUMEROS DECIMAIS ============
+
+========== TESTE 63 ==========
+Descricao: 0.5+0.5
+Expressao pos-fixa: 0.5 0.5 +
+Valor calculado: 1.000000
+Valor esperado: 1.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 64 ==========
+Descricao: 1.5+2.5
+Expressao pos-fixa: 1.5 2.5 +
+Valor calculado: 4.000000
+Valor esperado: 4.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 65 ==========
+Descricao: 3.5-1.5
+Expressao pos-fixa: 3.5 1.5 -
+Valor calculado: 2.000000
+Valor esperado: 2.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 66 ==========
+Descricao: 2.5*2
+Expressao pos-fixa: 2.5 2 *
+Valor calculado: 5.000000
+Valor esperado: 5.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 67 ==========
+Descricao: 0.5*4
+Expressao pos-fixa: 0.5 4 *
+Valor calculado: 2.000000
+Valor esperado: 2.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 68 ==========
+Descricao: 5.0/2
+Expressao pos-fixa: 5.0 2 /
+Valor calculado: 2.500000
+Valor esperado: 2.500000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 69 ==========
+Descricao: 10.0/4
+Expressao pos-fixa: 10.0 4 /
+Valor calculado: 2.500000
+Valor esperado: 2.500000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - POTENCIA ASSOCIATIVIDADE DIREITA ============
+
+========== TESTE 70 ==========
+Descricao: 2^(3^2)
+Expressao pos-fixa: 2 3 2 ^ ^
+Valor calculado: 512.000000
+Valor esperado: 512.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 71 ==========
+Descricao: 2^(2^3)
+Expressao pos-fixa: 2 2 3 ^ ^
+Valor calculado: 256.000000
+Valor esperado: 256.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+============ TESTES ADICIONAIS - COMPLEXOS ============
+
+========== TESTE 72 ==========
+Descricao: 8+(5*(2+4))
+Expressao pos-fixa: 8 5 2 4 + * +
+Valor calculado: 38.000000
+Valor esperado: 38.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 73 ==========
+Descricao: 100/(10-2)
+Expressao pos-fixa: 100 10 2 - /
+Valor calculado: 12.500000
+Valor esperado: 12.500000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 74 ==========
+Descricao: (log(100)*5)+2
+Expressao pos-fixa: 100 log 5 * 2 +
+Valor calculado: 12.000000
+Valor esperado: 12.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+========== TESTE 75 ==========
+Descricao: (sqrt(16)*3)+2
+Expressao pos-fixa: 16 raiz 3 * 2 +
+Valor calculado: 14.000000
+Valor esperado: 14.000000
+Diferenca: 0.000000
+RESULTADO: OK - PASSOU
+
+
+========================================
+RESUMO DOS TESTES
+========================================
+Total de testes: 75
+Testes aprovados: 75
+Testes falhados: 0
+Taxa de sucesso: 100.0%
+========================================

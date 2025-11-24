@@ -20,7 +20,7 @@
 // Pilha de números (float)
 typedef struct {
     float items[STACK_SIZE];
-    int top;        // Índice do topo
+    int top;
 } PilhaNumeros;
 
 // Pilha de operadores (+ - * / etc)
@@ -29,30 +29,34 @@ typedef struct {
     int top;
 } PilhaOperadores;
 
-// Pilha de strings (usada para converter pós-fixa → infixa)
+// Item da pilha que guarda expressão e precedência
 typedef struct {
-    char items[STACK_SIZE][100];
+    char expr[256];
+    int prec;
+} ItemPilha;
+
+// Pilha de expressões com precedência
+typedef struct {
+    ItemPilha items[STACK_SIZE];
     int top;
-} PilhaStrings;
+} PilhaExpressoes;
 
 
 // ============================
 //     Funções da Pilha Numérica
 // ============================
 
-// Empilha um número
 void pushNum(PilhaNumeros *p, float val) {
     if (p->top < STACK_SIZE - 1) {
         p->items[p->top++] = val;
     }
 }
 
-// Desempilha um número
 float popNum(PilhaNumeros *p) {
     if (p->top > 0) {
         return p->items[--p->top];
     }
-    return 0; // Retorno padrão
+    return 0;
 }
 
 
@@ -60,14 +64,12 @@ float popNum(PilhaNumeros *p) {
 //     Funções da Pilha Operadores
 // ============================
 
-// Empilha operador
 void pushOp(PilhaOperadores *p, char op) {
     if (p->top < STACK_SIZE - 1) {
         p->items[p->top++] = op;
     }
 }
 
-// Desempilha operador
 char popOp(PilhaOperadores *p) {
     if (p->top > 0) {
         return p->items[--p->top];
@@ -75,7 +77,6 @@ char popOp(PilhaOperadores *p) {
     return '\0';
 }
 
-// Retorna operador do topo sem remover
 char topOp(PilhaOperadores *p) {
     if (p->top > 0) {
         return p->items[p->top - 1];
@@ -85,23 +86,23 @@ char topOp(PilhaOperadores *p) {
 
 
 // ============================
-//     Funções da Pilha Strings
+//     Funções da Pilha Expressões
 // ============================
 
-// Empilha string
-void pushStr(PilhaStrings *p, const char *str) {
+void pushExpr(PilhaExpressoes *p, const char *expr, int prec) {
     if (p->top < STACK_SIZE - 1) {
-        strcpy(p->items[p->top], str);
+        strcpy(p->items[p->top].expr, expr);
+        p->items[p->top].prec = prec;
         p->top++;
     }
 }
 
-// Desempilha string
-char* popStr(PilhaStrings *p) {
+ItemPilha popExpr(PilhaExpressoes *p) {
+    ItemPilha vazio = {"", 0};
     if (p->top > 0) {
         return p->items[--p->top];
     }
-    return "";
+    return vazio;
 }
 
 
@@ -109,14 +110,12 @@ char* popStr(PilhaStrings *p) {
 //          Utilidades
 // ============================
 
-// Verifica se o token é uma função (sen, cos, log...)
 int isFuncao(const char *token) {
     return (strcmp(token, "raiz") == 0 || strcmp(token, "sen") == 0 ||
             strcmp(token, "cos") == 0 || strcmp(token, "tg") == 0 ||
             strcmp(token, "log") == 0);
 }
 
-// Retorna a precedência do operador
 int precedencia(char op) {
     if (op == '+' || op == '-') return 1;
     if (op == '*' || op == '/' || op == '%') return 2;
@@ -124,17 +123,26 @@ int precedencia(char op) {
     return 0;
 }
 
-// Define se um operador é associativo à esquerda
 int ehEsquerda(char op) {
-    return (op != '^'); // ^ é associativo à direita
+    return (op != '^');
+}
+
+void removerEspacos(char *str) {
+    int i = 0, j = 0;
+    while (str[i]) {
+        if (!isspace(str[i])) {
+            str[j++] = str[i];
+        }
+        i++;
+    }
+    str[j] = '\0';
 }
 
 
 // ============================
-//   Tokenização (quebra expressão em partes)
+//   Tokenização
 // ============================
 
-// Converte string em lista de tokens (números, operadores, palavras...)
 char** tokenizar(char *expr, int *count) {
     char **tokens = (char**)malloc(512 * sizeof(char*));
     *count = 0;
@@ -142,7 +150,6 @@ char** tokenizar(char *expr, int *count) {
 
     while (i < strlen(expr)) {
 
-        // Ignora espaços
         if (isspace(expr[i])) {
             i++;
             continue;
@@ -196,7 +203,6 @@ char** tokenizar(char *expr, int *count) {
 
 // ============================
 //     INFIXA → PÓS-FIXA
-//       (Shunting Yard)
 // ============================
 
 char* infixaParaPosfixa(char *infixa) {
@@ -212,13 +218,13 @@ char* infixaParaPosfixa(char *infixa) {
     for (int i = 0; i < count; i++) {
         char *token = tokens[i];
 
-        // Número → vai direto para saída
+        // Número
         if (isdigit(token[0]) || (token[0] == '.' && strlen(token) > 1)) {
             strcat(posfixa, token);
             strcat(posfixa, " ");
         }
 
-        // Função → marca com F
+        // Função
         else if (isFuncao(token)) {
             pushOp(&pilha, 'F');
         }
@@ -226,7 +232,6 @@ char* infixaParaPosfixa(char *infixa) {
         // Operador
         else if (strchr("+-*/%^", token[0])) {
 
-            // Desempilha operadores enquanto tiver maior precedência
             while (pilha.top > 0 && topOp(&pilha) != '(' && topOp(&pilha) != 'F') {
                 char op = topOp(&pilha);
 
@@ -252,7 +257,7 @@ char* infixaParaPosfixa(char *infixa) {
         else if (token[0] == '(')
             pushOp(&pilha, '(');
 
-        // Fecha parênteses → desempilha até achar '('
+        // Fecha parênteses
         else if (token[0] == ')') {
             while (pilha.top > 0 && topOp(&pilha) != '(') {
 
@@ -281,10 +286,9 @@ char* infixaParaPosfixa(char *infixa) {
     }
 
     // Remove último espaço
-    if (posfixa[strlen(posfixa) - 1] == ' ')
+    if (strlen(posfixa) > 0 && posfixa[strlen(posfixa) - 1] == ' ')
         posfixa[strlen(posfixa) - 1] = '\0';
 
-    // Libera tokens
     for (int i = 0; i < count; i++) free(tokens[i]);
     free(tokens);
 
@@ -296,7 +300,6 @@ char* infixaParaPosfixa(char *infixa) {
 //     Avaliação PÓS-FIXA
 // ============================
 
-// Calcula o valor final da expressão pós-fixa
 float avaliarPosfixa(char *posfixa) {
     PilhaNumeros pilha;
     pilha.top = 0;
@@ -308,7 +311,7 @@ float avaliarPosfixa(char *posfixa) {
 
     while (token != NULL) {
 
-        // Número → empilha
+        // Número
         if (isdigit(token[0]) || (token[0] == '.' && strlen(token) > 1) ||
             (token[0] == '-' && strlen(token) > 1)) {
 
@@ -316,7 +319,7 @@ float avaliarPosfixa(char *posfixa) {
         }
 
         // Operador binário
-        else if (strlen(token) == 1 && strchr("+-*/%^%", token[0])) {
+        else if (strlen(token) == 1 && strchr("+-*/%^", token[0])) {
 
             float b = popNum(&pilha);
             float a = popNum(&pilha);
@@ -356,17 +359,17 @@ float avaliarPosfixa(char *posfixa) {
     }
 
     free(copia);
-    return pilha.items[0];
+    return pilha.top > 0 ? pilha.items[0] : 0;
 }
 
 
 // ============================
 //     PÓS-FIXA → INFIXA
+//   (COM PARÊNTESES MÍNIMOS)
 // ============================
 
-// Reconstroi uma expressão infixa a partir da pós-fixa
 char* posfixaParaInfixa(char *posfixa) {
-
+    
     // Quebra tokens
     char **tokens = malloc(512 * sizeof(char*));
     int count = 0;
@@ -383,45 +386,85 @@ char* posfixaParaInfixa(char *posfixa) {
     }
     free(copia);
 
-    PilhaStrings pilha;
+    PilhaExpressoes pilha;
     pilha.top = 0;
 
     for (int i = 0; i < count; i++) {
 
         // Número
-        if (isdigit(tokens[i][0]) ||
-            (tokens[i][0] == '.' && strlen(tokens[i]) > 1)) {
-
-            pushStr(&pilha, tokens[i]);
+        if (isdigit(tokens[i][0]) || (tokens[i][0] == '.' && strlen(tokens[i]) > 1)) {
+            pushExpr(&pilha, tokens[i], 999); // Precedência máxima
         }
 
         // Operador binário
-        else if (strlen(tokens[i]) == 1 &&
-                 strchr("+-*/%^%", tokens[i][0])) {
+        else if (strlen(tokens[i]) == 1 && strchr("+-*/%^", tokens[i][0])) {
 
-            char *b = popStr(&pilha);
-            char *a = popStr(&pilha);
+            ItemPilha b = popExpr(&pilha);
+            ItemPilha a = popExpr(&pilha);
 
-            char resultado[256];
-            sprintf(resultado, "(%s%c%s)", a, tokens[i][0], b);
+            int precAtual = precedencia(tokens[i][0]);
+            char resultado[256] = "";
+            char temp[256];
 
-            pushStr(&pilha, resultado);
+            // Operando esquerdo precisa parênteses?
+            int parentEsq = 0;
+            if (a.prec < precAtual) {
+                parentEsq = 1;
+            }
+            // Para subtração e divisão: a - (b+c) precisa parênteses
+            if (a.prec == precAtual && !ehEsquerda(tokens[i][0])) {
+                parentEsq = 0; // Associatividade à direita (^)
+            }
+
+            // Operando direito precisa parênteses?
+            int parentDir = 0;
+            if (b.prec < precAtual) {
+                parentDir = 1;
+            }
+            // Para operadores associativos à esquerda
+            if (b.prec == precAtual && ehEsquerda(tokens[i][0])) {
+                parentDir = 1;
+            }
+            // Para subtração: a - (b-c) ou a - (b+c)
+            if (b.prec <= precAtual && (tokens[i][0] == '-' || tokens[i][0] == '/')) {
+                if (b.prec == 1 && tokens[i][0] == '-') parentDir = 1;
+                if (b.prec <= 2 && tokens[i][0] == '/') parentDir = 1;
+            }
+
+            // Monta a expressão
+            if (parentEsq) {
+                sprintf(resultado, "(%s)", a.expr);
+            } else {
+                strcpy(resultado, a.expr);
+            }
+
+            sprintf(temp, "%s%c", resultado, tokens[i][0]);
+            strcpy(resultado, temp);
+
+            if (parentDir) {
+                sprintf(temp, "%s(%s)", resultado, b.expr);
+            } else {
+                sprintf(temp, "%s%s", resultado, b.expr);
+            }
+
+            pushExpr(&pilha, temp, precAtual);
         }
 
         // Função
         else if (isFuncao(tokens[i])) {
-
-            char *a = popStr(&pilha);
+            ItemPilha a = popExpr(&pilha);
             char resultado[256];
-            sprintf(resultado, "%s(%s)", tokens[i], a);
-
-            pushStr(&pilha, resultado);
+            sprintf(resultado, "%s(%s)", tokens[i], a.expr);
+            pushExpr(&pilha, resultado, 999); // Funções têm precedência máxima
         }
     }
 
-    // Resultado final
     char *resultado = malloc(MAX_EXPR);
-    strcpy(resultado, popStr(&pilha));
+    if (pilha.top > 0) {
+        strcpy(resultado, pilha.items[0].expr);
+    } else {
+        strcpy(resultado, "");
+    }
 
     for (int i = 0; i < count; i++) free(tokens[i]);
     free(tokens);
@@ -434,13 +477,18 @@ char* posfixaParaInfixa(char *posfixa) {
 //        Funções públicas
 // ============================
 
-// Converte pós-fixa → infixa (interface externa)
 char* getFormaInFixa(char *Str) {
     if (Str == NULL || strlen(Str) == 0) return NULL;
-    return posfixaParaInfixa(Str);
+    
+    char *resultado = posfixaParaInfixa(Str);
+    if (resultado == NULL) return NULL;
+    
+    // Remove todos os espaços
+    removerEspacos(resultado);
+    
+    return resultado;
 }
 
-// Avalia expressão pós-fixa (interface externa)
 float getValorPosFixa(char *StrPosFixa) {
     if (StrPosFixa == NULL || strlen(StrPosFixa) == 0) return 0;
     return avaliarPosfixa(StrPosFixa);
